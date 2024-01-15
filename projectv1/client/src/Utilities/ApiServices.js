@@ -13,7 +13,7 @@ async function getProduct_code(url, token) {
     })
     const data = await res.json()
     const product = data.results[0].links[0].href
-    //console.log(product)
+    console.log(product)
     const product_code = getSegment(product)
     return product_code
 
@@ -32,7 +32,41 @@ async function getTariff(url, token,product_code) {
       },
     })
     const data = await res.json()
-    //console.log(data)
+    console.log(data)
+    return data
+    }
+   catch (error) {
+    console.log('ERROR', error);
+  }
+}
+
+async function getMonthTariff(url, token,product_code) {
+  try {
+    const res = await fetch(`${url}${product_code}/electricity-tariffs/E-1R-${product_code}-A/standard-unit-rates/?group_by='month'`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Basic " + btoa(token)
+      },
+    })
+    const data = await res.json()
+    return data
+    }
+   catch (error) {
+    console.log('ERROR', error);
+  }
+}
+
+async function getQuaterTariff(url, token,product_code) {
+  try {
+    const res = await fetch(`${url}${product_code}/electricity-tariffs/E-1R-${product_code}-A/standard-unit-rates/?group_by='quarter'`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Basic " + btoa(token)
+      },
+    })
+    const data = await res.json()
     return data
     }
    catch (error) {
@@ -50,45 +84,11 @@ async function getElecMeterConsumption (url2, token, mpan, sn) {
       },
     })
     const data = await res.json()
-    console.log('consu',data)
     return data
   }
-   catch (error) {
-    console.log('ERROR', error);
-  }
-}
-async function getMonthConsump(url2,  token, mpan, sn) {
-  try {
-    const res = await fetch(`${url2}electricity-meter-points/${mpan}/meters/${sn}/consumption/?group_by='month'`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: "Basic " + btoa(token)
-      },
-    })
-    const data = await res.json()
-    return data
-    }
    catch (error) {
     console.log('ERROR', error);
   }
 }
 
-async function getQuaterConsump(url2, token, mpan, sn) {
-  try {
-    const res = await fetch(`${url2}electricity-meter-points/${mpan}/meters/${sn}/consumption/?group_by='quarter'`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: "Basic " + btoa(token)
-      },
-    })
-    const data = await res.json()
-    return data
-    }
-   catch (error) {
-    console.log('ERROR', error);
-  }
-}
-
-export { getProduct_code,getTariff,getMonthConsump,getQuaterConsump,getElecMeterConsumption}
+export { getProduct_code,getTariff,getMonthTariff,getQuaterTariff,getElecMeterConsumption}
