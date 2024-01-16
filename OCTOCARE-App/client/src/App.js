@@ -1,32 +1,23 @@
 import Login from './Components/login'; // Fix the casing of the file name
 import Details from './Components/Details';
+import Monthconsump from './Components/Monthconsump';
+import QuarterConsump from './Components/QuarterConsump';
 import { useState } from 'react';
-import { BrowserRouter, Routes, Route} from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 function App() {
 
-const [credentials, setCredentials] = useState({});
+  const [credentials, setCredentials] = useState({});
 
 
   return (
     <BrowserRouter>
-      <div className="App">
-        <header className="App-header">
-          <a
-            className="App-link"
-            href="https://octopus.energy"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <h1><strong>Octopus</strong>Energy</h1>
-          </a>
-        </header>
-        <Routes>
-        
-         <Route path='/' element={<Login setCredentials={ setCredentials} credentials = {credentials}  />}></Route>
-         <Route path='/details' element={<Details credentials = {credentials} />}></Route>
-        </Routes>
-      </div>
+      <Routes>
+        <Route path='/' element={<Login setCredentials={setCredentials} credentials={credentials} />}></Route>
+        <Route path='/details' element={<Details credentials={credentials} />}></Route>
+        <Route path='/month' element={<Monthconsump/>}></Route>
+        <Route path='/quarter' element={<QuarterConsump/>}></Route>
+      </Routes>
     </BrowserRouter>
   );
 }

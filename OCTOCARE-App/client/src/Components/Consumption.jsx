@@ -2,7 +2,7 @@ import './Consumption.css'
 import dayjs from 'dayjs'
 
 function Consumption({ values }) {
-  //console.log(values.consumption)
+
   return (
     <div className="consumption_container">
         <div className="date"><h3>{dayjs(values.interval_start).format('DD/MM/YYYY')}</h3></div>

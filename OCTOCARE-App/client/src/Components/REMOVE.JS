@@ -20,3 +20,14 @@
       }
     })()
   }, []) */
+
+  // variables storing user inputs from form page
+  //const token = credentials.AccountAPI + ":";
+  //const mpan = credentials.MeterpointMPAN;
+  //const sn = credentials.meterSN;
+  //const date = credentials.date + "T00:00:00Z";
+  // state variables to store cur tarrif rates from api call
+  //const [curtardata, setcurtardata] = useState([]);
+
+  // state variables to store user consumption from api call
+  //const [consumpData, setConsumpData] = useState([]);

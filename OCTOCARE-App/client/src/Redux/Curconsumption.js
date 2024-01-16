@@ -4,7 +4,6 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 export const curConsump = createAsyncThunk(
   'curConsump',
   async (cred,thunkAPI) => {
-    //const product_code = await getProduct_code(cred.url, cred.token);
     const data = await getElecMeterConsumption(cred.url,cred.token,cred.mpan,cred.sn);
     return data;
   }
@@ -13,7 +12,6 @@ export const curConsump = createAsyncThunk(
 export const monConsump = createAsyncThunk(
   'monConsump',
   async (cred, thunkAPI) => {
-    //const product_code = await getProduct_code(cred.url2, cred.token);
     const data = await getMonthConsump(cred.url,cred.token,cred.mpan,cred.sn);
     return data;
   }
@@ -22,8 +20,6 @@ export const monConsump = createAsyncThunk(
 export const quarterConsump = createAsyncThunk(
   'quarterConsump',
   async (cred, thunkAPI) => {
-    //const product_code = await getProduct_code(cred.url2, cred.token);
-    //console.log(cred)
     const data = await getQuaterConsump(cred.url,cred.token,cred.mpan,cred.sn);
     return data;
   }

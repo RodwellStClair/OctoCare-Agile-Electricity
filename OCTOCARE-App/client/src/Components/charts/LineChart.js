@@ -10,7 +10,7 @@ ChartJS.register(TimeScale)
 function LineChart({consumpData}) {
  chartconfig.data.labels = consumpData.map((item) => item.interval_start)
  chartconfig.data.datasets[0].data = consumpData.map((item) => item.consumption)
- console.log('i work')
+ 
    return (
     <div><Line
       data={chartconfig.data}
