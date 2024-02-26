@@ -1,11 +1,11 @@
 const express = require('express');
 const app = express();
 const router = require('./router.js');
-//const corse = require('cors');
+
 const {dbConnection} = require('./model/db.js');
 const port = 3090;
 app.use(express.json());
-//app.use(corse());
+
 app.use(router);
 
 (async () => app.listen(port, async () => {

@@ -1,5 +1,7 @@
 const mongoose = require('mongoose');
 
+// database connection
+
 const dbConnection = async () => {
   try {
     await mongoose.connect('mongodb://127.0.0.1:27017/Octodb');

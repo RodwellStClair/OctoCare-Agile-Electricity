@@ -1,8 +1,7 @@
 const { transformConsump, mergeData } = require('./utilities');
 const { getConsump } = require('./ApiService');
 
-async function getConsumpdb(token, mpan, sn, collectioncon, tarriffdata) {
-  
+async function getConsumpdb(product_code,token, mpan, sn, collection, tarriffdata) {
   try {
     const consumpdata = await collection.findOne({ Data: 'Consumption' });
     if (consumpdata) {
@@ -32,9 +31,8 @@ async function getConsumpdb(token, mpan, sn, collectioncon, tarriffdata) {
         const data = await getConsump(token, mpan, sn);
         const consumptiondata = transformConsump(data.results);
         const mergedData = mergeData(tarriffdata, consumptiondata);
-
         try {
-          const newConsump = new collectioncon({ Userid: product_code, Data: 'Consumption', Timeseries: mergedData });
+          const newConsump = new collection({ Userid: product_code, Data: 'Consumption', Timeseries: mergedData });
           const savedConsump = await newConsump.save();
           return savedConsump;
         } catch (error) {

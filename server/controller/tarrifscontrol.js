@@ -1,9 +1,7 @@
 const { transform } = require('./utilities');
 const { getTariff } = require('./ApiService');
 
-
 async function getTariffdb(product_code, token, collection) {
-
   try {
     const tariffdata = await collection.findOne({ Data: 'Tariff' });
     if (tariffdata) {
@@ -30,7 +28,7 @@ async function getTariffdb(product_code, token, collection) {
       }
     } else {
       try {
-        const tariffdata = await getTariff(url, token, product_code);
+        const tariffdata = await getTariff(token, product_code);
         const data = transform(tariffdata.results);
         try {
           const newTariff = new collection({ Userid: product_code, Data: 'Tariff', Timeseries: data });

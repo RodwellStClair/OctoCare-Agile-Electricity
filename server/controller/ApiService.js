@@ -1,5 +1,3 @@
-const {transformConsump} = require('./utilities');
-
 async function getUserid(token) {
   const url = "https://api.octopus.energy/v1/products/"
   function getSegment(uri) {

@@ -7,41 +7,28 @@ const { Schema } = mongoose;
 const timeseriesSchematar = new Schema({
   From: { type: String },
   To: { type: String },
-  Tariff: { type: Number }
-}, { _id: false });
+  Tariff: { type: Number },
+  Consumption: { type: Number },
+  Cost: { type: Number }
+},
+  { _id: false },
+  { strict: false });
 
-const tariffdataSchema = new Schema({
+const ElectricdataSchema = new Schema({
   Userid: { type: String },
   Data: { type: String },
   Timeseries: [timeseriesSchematar]
-}, { timestamps: true });
+},
+  { timestamps: true },
+  { strict: false }
+);
 
-// Consumption Schema
-const timeseriesSchemaconsump = new Schema({
-  From: { type: String },
-  To: { type: String },
-  Tarriff: { type: Number },
-  Consumption: { type: Number },
-  Cost: { type: Number }
-}, { _id: false });
-
-const ConsumpdataSchema = new Schema({
-  Userid: { type: String },
-  Data: { type: String },
-  Timeseries: [timeseriesSchemaconsump]
-}, { timestamps: true });
-
-const userconsump = (product_code) => {
-  const modelName = `${product_code}`;
-  const collection =  mongoose.model(modelName, ConsumpdataSchema, modelName);
-  return collection;
-}
-
+//dynamic model creation
 async function createUser(product_code) {
   const modelName = `${product_code}`;
-  const collection =  mongoose.models?.[modelName] || mongoose.model(modelName, tariffdataSchema);
+  const collection = mongoose.models?.[modelName] || mongoose.model(modelName, ElectricdataSchema);
   return collection;
 }
 
 
-module.exports = { createUser, userconsump }
+module.exports = { createUser }

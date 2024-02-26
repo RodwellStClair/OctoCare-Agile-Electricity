@@ -16,10 +16,10 @@ exports.transformConsump = (data) => {
 
 exports.mergeData = (tariff, consump) => {
   // Create a map from the first dataset for quick lookup
-  const dataMap = new Map(tariff.map(item => [`${item.From}_${item.To}`, item]));
+  const dataMap = new Map(tariff.Timeseries.map(item => [`${item.From}_${item.To}`, item]));
 
   // Iterate over the second dataset and merge with the first dataset where dates match
-  const mergedData = data2.reduce((acc, item2) => {
+  const mergedData = consump.reduce((acc, item2) => {
     const key = `${item2.From}_${item2.To}`;
     const item1 = dataMap.get(key);
 
@@ -27,9 +27,9 @@ exports.mergeData = (tariff, consump) => {
       acc.push({
         From: item1.From,
         To: item1.To,
-        Tariff: item1.tariff,
+        Tariff: item1.Tariff,
         Consumption: item2.Consumption,
-        Cost: item1.Cost * item2.Consumption
+        Cost: item1.Tariff * item2.Consumption
       });
     }
     return acc;
