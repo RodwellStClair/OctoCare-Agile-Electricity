@@ -1,13 +1,12 @@
-import { getProduct_code, getTariff} from '../Utilities/ApiServices';
+import { getTariff} from '../Utilities/ApiServices';
 
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
 export const curTariff = createAsyncThunk(
   'curTariff',
   async (cred, thunkAPI) => {
-    const product_code = await getProduct_code(cred.url, cred.token);
-    const data = await getTariff(cred.url, cred.token, product_code);
-    return data;
+
+    return await getTariff(cred.token, cred.mpan, cred.sn,cred.product_code);
   }
 );
 

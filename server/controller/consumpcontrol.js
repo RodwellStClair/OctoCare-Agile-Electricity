@@ -1,5 +1,5 @@
 const { transformConsump, mergeData } = require('./utilities');
-const { getConsump } = require('./ApiService');
+const { getConsump } = require('./apiService');
 
 async function getConsumpdb(product_code,token, mpan, sn, collection, tarriffdata) {
   try {
@@ -14,6 +14,7 @@ async function getConsumpdb(product_code,token, mpan, sn, collection, tarriffdat
           const data = await getConsump(token, mpan, sn);
           const consumptiondata = transformConsump(data.results);
           const mergedData = mergeData(tarriffdata, consumptiondata);
+          
           try {
             const updatedConsump = await collection.findOneAndUpdate({ Data: 'Consumption' },
               { $set: { Timeseries: mergedData } },

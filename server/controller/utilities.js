@@ -15,10 +15,9 @@ exports.transformConsump = (data) => {
 }
 
 exports.mergeData = (tariff, consump) => {
-  // Create a map from the first dataset for quick lookup
+
   const dataMap = new Map(tariff.Timeseries.map(item => [`${item.From}_${item.To}`, item]));
 
-  // Iterate over the second dataset and merge with the first dataset where dates match
   const mergedData = consump.reduce((acc, item2) => {
     const key = `${item2.From}_${item2.To}`;
     const item1 = dataMap.get(key);
@@ -37,3 +36,20 @@ exports.mergeData = (tariff, consump) => {
   , []);
   return mergedData;
 };
+
+exports.calculateDayCost = (data) => {
+  const dailyCosts = {};
+    data.forEach(entry => {
+        const date = entry.From.split('T')[0];
+        const cost = entry.Cost;
+        if (dailyCosts[date]) {
+            dailyCosts[date] += cost;
+        } else {
+            dailyCosts[date] = cost;
+        }
+    });
+    return Object.keys(dailyCosts).map(date => ({
+        Date: date,
+        Daycost: parseFloat((dailyCosts[date]/100).toFixed(2))
+    }));
+}

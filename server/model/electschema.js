@@ -9,7 +9,9 @@ const timeseriesSchematar = new Schema({
   To: { type: String },
   Tariff: { type: Number },
   Consumption: { type: Number },
-  Cost: { type: Number }
+  Cost: { type: Number },
+  Date: { type: String },
+  Daycost: { type: Number }
 },
   { _id: false },
   { strict: false });

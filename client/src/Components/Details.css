@@ -1,51 +1,68 @@
 * {
-  margin: 0;
-  padding: 0;
+  margin: 10px;
+  padding: 10px;
   font-family: sans-serif;
 }
-.details_container {
-  background: #f2f2f2;
+
+.container {
   display: flex;
   flex-direction: column;
-}
-.Details{
-  display: flex;
-  flex-direction:row;
+  background: #180048;
+  height: 100vh;
 }
 
-.tarrif{
+.tarrif_container {
+  display: flex;
+  flex-direction: row;
+}
+
+.tarrif-table {
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+  width: 25vw;
 }
-.tarrif_header{
+
+.tarrif_header {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   padding: 10px;
-  background: #f2f2f2;
   border-bottom: 1px solid #ccc;
 }
-.consumption_header{
+
+.tarrif_header h3 {
+  color: #fdfdfd;
+  padding-right: 15px;
+}
+
+.tarrif_body {
+  width: 100%;
+  height: 80vh;
+  overflow-y: scroll;
+}
+
+.tarrif-chart {
+  padding-top: 20px;
+  width: 90vw;
+}
+
+.tarrif-chart-header h3 {
+  color: #fdfdfd;
+  text-align: center;
+}
+.tarrif-chart-footer {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   padding: 10px;
-  background: #f2f2f2;
+  border-top: 1px solid #ccc;
   border-bottom: 1px solid #ccc;
-}
-.date{
- width:6rem;
-}
-.timefrom{
-  width:6rem;
-}
-.timeto{
-  width:6rem;
-}
-.cost{
-  width:6rem;
+  color:#ccc;
 }
 img {
-  width:100vh;
-  height:100vh;
+  width: 100vh;
+  height: 100vh;
 }

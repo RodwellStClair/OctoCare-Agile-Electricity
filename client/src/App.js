@@ -1,24 +1,20 @@
-import Login from './Components/login'; // Fix the casing of the file name
+import Login from './Components/login'; 
 import Details from './Components/Details';
-import Monthconsump from './Components/Monthconsump';
-import QuarterConsump from './Components/QuarterConsump';
-import { useState } from 'react';
+import Consumption from './Components/Consumption';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 function App() {
 
-  const [credentials, setCredentials] = useState({});
-
-
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path='/' element={<Login setCredentials={setCredentials} credentials={credentials} />}></Route>
-        <Route path='/details' element={<Details credentials={credentials} />}></Route>
-        <Route path='/month' element={<Monthconsump/>}></Route>
-        <Route path='/quarter' element={<QuarterConsump/>}></Route>
-      </Routes>
-    </BrowserRouter>
+    <>
+      <BrowserRouter>
+        <Routes>
+          <Route path='/' element={<Login />}></Route>
+          <Route path='/details' element={<Details />}></Route>
+          <Route path='/Consumption' element={<Consumption />}></Route>
+        </Routes>
+      </BrowserRouter>
+    </>
   );
 }
 

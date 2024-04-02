@@ -1,5 +1,6 @@
-import React from "react"
+
 import { Link } from "react-router-dom"
+import './NavBar.css'
 function NavBar() {
   return (
     <div className="nav-bar">
@@ -16,10 +17,9 @@ function NavBar() {
         </header>
       </div>
       <div className="navlink">
-        <Link to="/details"><button className="current-btn">Current</button></Link>
-        <Link to="/month"><button className="month-btn">1 month ago</button></Link>
-        <Link to="/quarter"><button className="quarter-btn">3 months ago </button> </Link>
-        <Link to="/"><button>Logout</button></Link>
+        <Link to="/details"><button className="btn">Current Tariff</button></Link>
+        <Link to="/Consumption"><button className="btn">Current Consumption</button></Link>
+        <Link to="/"><button className="btn">Logout</button></Link>
       </div>
     </div>
     )

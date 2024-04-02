@@ -1,51 +1,29 @@
 import './Details.css'
-import { Link } from "react-router-dom";
-import { useState, useEffect } from 'react';
 import Tariffs from './Tariffs';
-import Consumption from './Consumption';
 import spinner from '../icons/loading.gif';
-import LineChart from './charts/LineChart';
-import { useSelector, useDispatch } from 'react-redux';
-import { curTariff } from '../Redux/CurtariffState'
-import { curConsump ,monConsump, quarterConsump } from '../Redux/Curconsumption'
 import NavBar from './NavBar';
+import { useData } from './custom hook/useData'
+import Clock from './Clock';
+import TariffLineChart from './charts/tarrifcharts/TariffLineChart';
 
-function Details({ credentials }) {
+function Details() {
 
-  const formData = useSelector((state) => state.formReducer.formdata);
+  const { tariff } = useData();
+  const maxtariff = tariff?.Timeseries ? Math.max(...tariff.Timeseries.map((item) => item.Tariff)) : 0;
 
-  const {AccountAPI,mpan,sn} = formData;
-  const token = AccountAPI + ":";
-  const url = "https://api.octopus.energy/v1/products/";
-  const url2 = "https://api.octopus.energy/v1/";
-
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(curTariff({ url: url, token: token }))
-    dispatch(curConsump({ url:url2, token:token, mpan:mpan,sn:sn}))
-    dispatch(monConsump({ url:url2, token:token, mpan:mpan,sn:sn}))
-    dispatch(quarterConsump({ url:url2, token:token, mpan:mpan,sn:sn}))
-  }, [])
-
-  const curconsump = useSelector((state) => state.curConsump);
-  const tariff = useSelector((state) => state.curTariff);
- 
-  const consumpData = curconsump.data.results;
   return (
-    <>
+    <div className='container'>
       <NavBar />
-      <div className="details_container">
-        <div className='Details'>
-          <div className="tarrif">
-            <div className="tarrif_header">
-              <div className='date'>Time Period</div>
-              <div className="cost">Current Tarrif</div>
-            </div>
-            {tariff.data.results ? (
-              tariff.data.results.map((item, index) => {
+      <div className="tarrif_container">
+        <div className="tarrif-table">
+          <div className="tarrif_header">
+            <h3>Time Period</h3><h3>Today's Tarrifs</h3>
+          </div>
+          <div className="tarrif_body">
+            {tariff?.Timeseries ? (
+              tariff.Timeseries.map((item, index) => {
                 return (
-                  <Tariffs item={item} key={index} />
+                  <Tariffs item={item} maxtariff={maxtariff} key={index} />
                 )
               })
             ) : (
@@ -55,42 +33,44 @@ function Details({ credentials }) {
               </>
             )}
           </div>
-          <div className="consumption">
-            <div className="consumption_header">
-              <div className='date'>Date</div>
-              <div className="timefrom">Time From</div>
-              <div className="timeto">Time To</div>
-              <div className="consumption_values">Consumption</div>
-            </div>
-            {curconsump.data.results ? (
-              curconsump.data.results.map((values, index) => {
-                return (
-                  <Consumption values={values} key={index} />
-                )
-              })
-            ) : (
-              <>
-                <img src={spinner} alt="loading" />
-                * <h1>Loading.......</h1> *
-              </>
-            )}
-          </div>
         </div>
-      </div>
-         <div className="consumption-chart">
-         {curconsump.data.results ?(
-         <LineChart consumpData={consumpData} />
-         ):(
+        <div className="tarrif-chart">
+          <div className="tarrif-chart-header">
+            <h3>Tarrif Chart</h3>
+          </div>
+          {tariff?.Timeseries ? (
+            <TariffLineChart tariffData={tariff.Timeseries} />
+          ) : (
             <>
-            <img src={spinner} alt="loading" />
-            <h1>Loading....... </h1>
+              <img src={spinner} alt="loading" />
+              <h1>Loading....... </h1>
             </>
           )}
+          <div className="tarrif-chart-footer">
+            {tariff?.Timeseries ? (
+              tariff.Timeseries.map((item, index) => {
+                let [FromDate, FromTime] = item.From.split('T');
+                let validFromHour = FromTime.split(':')[0] || 0;
+                let validFromMinute = FromTime.split(':')[1] || 0;
+                let currentTime = new Date();
+                let currentHour = currentTime.getHours().toString().padStart(2, '0');
+                let currentMinute = currentTime.getMinutes().toString().padStart(2, '0');
+                if ((currentHour === validFromHour && validFromMinute === '00' && currentMinute < 30) || (currentHour === validFromHour && validFromMinute === '30' && currentMinute >= 30)) {
+                  return (
+                    <div key={index} className="tarrif-chart-footer-item">
+                      <h3><strong>Current Tariff</strong> {item.Tariff.toFixed(1)} p/kwh</h3>
+                    </div>
+                  )
+                }
+                return null;
+              })
+            ) : (<><h6>Loading</h6> </>)}
+            <Clock />
+          </div>
+
+        </div>
       </div>
-      <div className='footer'>
-        <Link to="/">Logout</Link>
-      </div>
-    </>
+    </div>
   )
 }
 export default Details

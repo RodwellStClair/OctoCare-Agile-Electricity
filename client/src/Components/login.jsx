@@ -1,22 +1,31 @@
+import './Login.css';
 import { useNavigate } from "react-router-dom";
-import { useSelector, useDispatch } from 'react-redux';
-import { getformdata } from '../Redux/Formstate'
+import { useEffect, useState } from "react";
+import { setStorage } from "../Utilities/setStorage";
 
 function Login() {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
+  const [cred, setcred] = useState(null);
 
-  async function submit(event) {
+
+  function submit(event) {
     event.preventDefault();
     const form = document.getElementById("octform");
     const formdata = new FormData(form);
     const NewCRED = {}
-    NewCRED.AccountAPI = formdata.get("AccountAPI");
+    NewCRED.token = formdata.get("AccountAPI") + ":";
     NewCRED.mpan = formdata.get("MeterpointMPAN");
     NewCRED.sn = formdata.get("meterSN");
-    dispatch(getformdata(NewCRED))
-    navigate("/details");
+    setcred(NewCRED);
   }
+
+  useEffect(() => {
+    if (cred) {
+      setStorage(cred).then(() => {
+        navigate("/details");
+      });
+    }
+  }, );
 
   return (
     <div className="App">
@@ -30,14 +39,15 @@ function Login() {
           <h1><strong>Octopus</strong>Energy</h1>
         </a>
       </header>
-      <section className="login">
-        <form id="octform" onSubmit={submit}>
+
+        <form id="octform" className="form_main" onSubmit={submit}>
+         <p className="heading">Login</p>
           <input type="text" name="AccountAPI" placeholder="Account API" />
           <input type="text" name="MeterpointMPAN" placeholder="Meterpoint MPAN" />
           <input type="text" name="meterSN" placeholder="Meter Serial Number" />
-          <button type="submit" value="submit">Login</button>
+          <button type="submit" value="submit" className="login-btn">Login</button>
         </form>
-      </section>
+
     </div>
   )
 }
