@@ -8,7 +8,11 @@ import TariffLineChart from './charts/tarrifcharts/TariffLineChart';
 
 function Details() {
 
-  const { tariff } = useData();
+  let { tariff } = useData();
+  let { tariffLocal } = useData()
+
+  if (!tariff){ tariff = tariffLocal}
+
   const maxtariff = tariff?.Timeseries ? Math.max(...tariff.Timeseries.map((item) => item.Tariff)) : 0;
 
   return (
@@ -52,10 +56,11 @@ function Details() {
                 let [FromDate, FromTime] = item.From.split('T');
                 let validFromHour = FromTime.split(':')[0] || 0;
                 let validFromMinute = FromTime.split(':')[1] || 0;
-                let currentTime = new Date();
-                let currentHour = currentTime.getHours().toString().padStart(2, '0');
-                let currentMinute = currentTime.getMinutes().toString().padStart(2, '0');
-                if ((currentHour === validFromHour && validFromMinute === '00' && currentMinute < 30) || (currentHour === validFromHour && validFromMinute === '30' && currentMinute >= 30)) {
+                let currentDate = new Date();
+                let currentHour = currentDate.getHours().toString().padStart(2, '0');
+                let currentMinute = currentDate.getMinutes().toString().padStart(2, '0');
+                if ((currentHour === validFromHour && validFromMinute === '00' && Number(currentMinute) < 30)
+                || (currentHour === validFromHour && validFromMinute === '30' && currentMinute >= 30)) {
                   return (
                     <div key={index} className="tarrif-chart-footer-item">
                       <h3><strong>Current Tariff</strong> {item.Tariff.toFixed(1)} p/kwh</h3>

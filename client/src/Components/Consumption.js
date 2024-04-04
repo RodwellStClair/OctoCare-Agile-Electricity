@@ -7,7 +7,11 @@ import getMonthCost from '../Utilities/getMonthCost';
 import dayjs from 'dayjs';
 
 function Consumption() {
-  const { curconsump } = useData();
+  let { curconsump } = useData();
+  let { curconsumpLocal } = useData();
+
+  if (!curconsump) { curconsump = curconsumpLocal }
+  
   const MonthCost = getMonthCost(curconsump);
 
   return (

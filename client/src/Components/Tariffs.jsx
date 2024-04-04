@@ -1,9 +1,11 @@
 import './Tariffs.css'
 import dayjs from 'dayjs'
 
+
 function Tariffs({ item, maxtariff }) {
   const secMax = maxtariff - 5;
   const lowMax = secMax - 10;
+
   return (
     <div className={
    `${item.Tariff === maxtariff ? "tar-row-max" : "tar-row"}
@@ -12,8 +14,8 @@ function Tariffs({ item, maxtariff }) {
     }>
       <div className='datetime'>
         <div className='time'>
-          <div className="timefrom"><h3>{dayjs(item.From).format('HH:mm')}</h3></div>
-          <div className="timeto"><h3>{dayjs(item.To).format('HH:mm')}</h3></div>
+          <div className="timefrom"><h3>{ item.From.split('T')[1].slice(0, 5)}</h3></div>
+          <div className="timeto"><h3>{item.To.split('T')[1].slice(0, 5)}</h3></div>
         </div>
         <div className='date'></div><h4>{dayjs(item.From).format('D/MMM/YYYY')}</h4>
       </div>

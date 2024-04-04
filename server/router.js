@@ -51,6 +51,7 @@ router.get('/getdayprices/:product_code', async (req, res) => {
     const collection = await createUser(product_code);
     try {
       const consumpdata = await collection.findOne({ Data: 'Dayprices' });
+      
       if (consumpdata) {
         res.status(200).send(consumpdata);
       } else {

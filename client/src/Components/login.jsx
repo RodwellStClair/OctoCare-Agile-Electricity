@@ -16,8 +16,16 @@ function Login() {
     NewCRED.token = formdata.get("AccountAPI") + ":";
     NewCRED.mpan = formdata.get("MeterpointMPAN");
     NewCRED.sn = formdata.get("meterSN");
+    NewCRED.demo = false ;
     setcred(NewCRED);
   }
+  function handleDemoClick(event) {
+    event.preventDefault();
+    setStorage({'demo': true,}).then(() => {
+        navigate("/details");
+      });
+
+    }
 
   useEffect(() => {
     if (cred) {
@@ -46,6 +54,7 @@ function Login() {
           <input type="text" name="MeterpointMPAN" placeholder="Meterpoint MPAN" />
           <input type="text" name="meterSN" placeholder="Meter Serial Number" />
           <button type="submit" value="submit" className="login-btn">Login</button>
+          <button type="submit" onClick={handleDemoClick} className="login-btn">Demo</button>
         </form>
 
     </div>

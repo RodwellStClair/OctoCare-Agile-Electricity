@@ -6,7 +6,7 @@ async function updateDayPrice(product_code,collection,comsumpdata){
     if (consumpdata) {
       const lastRefreshed = new Date(consumpdata.updatedAt).toISOString().split('T')[0]
       const today = new Date().toISOString().split('T')[0]
-      if (lastRefreshed === today ) {
+      if (lastRefreshed === today  ) {
         return consumpdata;
       } else {
         try {

@@ -6,8 +6,10 @@ async function getTariffdb(product_code, token, collection) {
     const tariffdata = await collection.findOne({ Data: 'Tariff' });
     if (tariffdata) {
       const lastRefreshed = new Date(tariffdata.updatedAt).toISOString().split('T')[0]
+      
       const today = new Date().toISOString().split('T')[0]
-      if ( lastRefreshed === today ) {
+
+      if ( lastRefreshed  === today  ) {
         return tariffdata;
       } else {
         try {

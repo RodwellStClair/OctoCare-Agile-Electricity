@@ -7,14 +7,14 @@ async function getConsumpdb(product_code,token, mpan, sn, collection, tarriffdat
     if (consumpdata) {
       const lastRefreshed = new Date(consumpdata.updatedAt).toISOString().split('T')[0]
       const today = new Date().toISOString().split('T')[0]
-      if (lastRefreshed === today) {
+      if (lastRefreshed  === today) {
         return consumpdata;
       } else {
         try {
           const data = await getConsump(token, mpan, sn);
           const consumptiondata = transformConsump(data.results);
           const mergedData = mergeData(tarriffdata, consumptiondata);
-          
+
           try {
             const updatedConsump = await collection.findOneAndUpdate({ Data: 'Consumption' },
               { $set: { Timeseries: mergedData } },
