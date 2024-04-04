@@ -19,19 +19,24 @@ To install the dependencies for this project, follow these steps:
 
   ```shell
   npm install
+```
 
-4.Start Backend server from terminal; navigate to the server directory:
-OctoCare-Agile-Electricity\server and run following command:
-
-   node start index.js
-
-5.Start FrontEnd server from terminal; navigating to the src directory:
+4. Start FrontEnd server from terminal; navigating to the src directory:
   OctoCare-Agile-Electricity\client\src run the following command:
 
+ ```shell
     npm start
-
-6. if browser does not open automatically then Open your web browser and navigate
+```
+5. if browser does not open automatically then Open your web browser and navigate
 to `http://localhost:3000` to access the OctoCare-Agile-Electricity application.
+
+##### if you do not have an API key from Octopus Energy then click on the demo button for a preveiw of the application without starting backend server
+![](./client/src/icons/demo.jpg)
+
+6. Start Backend server from terminal; navigate to the server directory:
+OctoCare-Agile-Electricity\server and run following command:
+ ```shell
+   node start index.js
 ```
   ## Usage
 
