@@ -29,6 +29,7 @@ const TariffLineConfig = {
   },
   options: {
     responsive: true,
+     maintainAspectRatio:'',
     layout: {
       padding: {
         left: 20,

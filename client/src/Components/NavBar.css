@@ -10,14 +10,14 @@ header h1 {
 }
 
 .btn {
-  margin:2px;
+  margin:0.3rem;
   display: inline-block;
   outline: 0;
   cursor: pointer;
   padding: 5px 16px;
-  font-size: 14px;
+  font-size: 1rem;
   font-weight: 500;
-  line-height: 20px;
+  line-height: 1.2rem;
   vertical-align: middle;
   border: 1px solid;
   border-radius: 6px;
@@ -34,3 +34,29 @@ header h1 {
     border-color: #1b1f2326;
     transition-duration: 0.1s;
   }
+@media (max-width: 700px) {
+  .octolink{
+    padding-top:0rem;
+    margin:0rem;
+    justify-items: center;
+  }
+  .App-header{
+    padding: 0.5rem;
+  }
+  .octolink h1{
+    font-size: 1.5rem;
+    text-align: center;
+  }
+  .nav-bar {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0rem;
+  }
+  .btn{
+    margin:0.3rem;
+    padding: 0.2rem 0.5rem;
+    font-size: 0.8rem;
+  }
+}

@@ -51,10 +51,10 @@ function useData() {
     curconsumpLocal = getTarriffConsump().curconsumpLocal;
   }
 
-console.log(tariffLocal, curconsumpLocal);
+
   const tariff = useSelector((state) => state.curTariff.data);
   const curconsump = useSelector((state) => state.curConsump.data);
-  console.log(tariff, curconsump);
+
   return tariffLocal? {tariffLocal,curconsumpLocal} :{ tariff, curconsump };
 }
 

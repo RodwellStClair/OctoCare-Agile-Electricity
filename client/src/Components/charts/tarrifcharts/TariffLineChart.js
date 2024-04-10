@@ -1,4 +1,4 @@
-import React from 'react'
+
 import tariffLineConfig from './TariffLineConfig';
 import { Line } from "react-chartjs-2";
 import ChartJS from 'chart.js/auto';
@@ -8,10 +8,12 @@ import dayjs from 'dayjs';
 
 ChartJS.register(TimeScale)
 
-function TariffLineChart({tariffData }) {
+function TariffLineChart({ tariffData, aspectRatio }) {
+
   tariffLineConfig.data.labels = tariffData.map((item) => item.From)
   tariffLineConfig.data.datasets[0].data = tariffData.map((item) => item.Tariff)
   tariffLineConfig.options.scales.x.title.text = dayjs(tariffData[0].From).format('DD-MMMM-YYYY')
+  tariffLineConfig.options.maintainAspectRatio =  aspectRatio
   return (
     <div className="tarrif-chart-body">
       <Line
