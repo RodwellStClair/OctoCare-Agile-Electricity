@@ -1,9 +1,18 @@
-# OctoCare-Agile-Electricity
- * This file serves as the main documentation for the OctoCare-Agile-Electricity project.
+# OctoCare Energy
+ * This file serves as the main documentation for the OctoCare Energy project.
  * It provides an overview of the project, its purpose, and instructions on how to use it.
  * Author: Rodwell
  * Version: 2.0
  * Date: 12/01/2024
+
+## Table of Contents
+* [Overview](#overview)
+* [Installation](#installation)
+* [Usage](#usage)
+* [Tech Stack](#techstack-used)
+* [App Preview](#app-preview-screenshots)
+* [Contributing](#contributing)
+
 
 ## Overview
 
@@ -31,7 +40,7 @@ To install the dependencies for this project, follow these steps:
 to `http://localhost:3000` to access the OctoCare-Agile-Electricity application.
 
 ##### if you do not have an API key from Octopus Energy then click on the demo button for a preveiw of the application without starting backend server
-![](./client/src/icons/demo.jpg)
+![](./client/src/icons/landingpage.jpg)
 
 6. Start Backend server from terminal; navigate to the server directory:
 OctoCare-Agile-Electricity\server and run following command:
@@ -42,9 +51,23 @@ OctoCare-Agile-Electricity\server and run following command:
 
   Once the project is up and running, you can use the OctoCare-Agile-Electricity application to manage your electricity solutions in an agile manner. Follow the instructions provided in the application to perform various tasks. If you do not own an API Key from Octopus Energy then click on the demo for a view of the application
 
+## TechStack used
+<div>
+
+![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=flat&logo=css3&logoColor=white) ![React](https://img.shields.io/badge/React-informational?style=flat&logo=react&logoColor=white&color=1d00ff) ![Redux-Toolkit](https://img.shields.io/badge/Redux_Toolkit-764ABC?style=flat&logo=redux&logoColor=white)  ![Express.js](https://img.shields.io/badge/Express.js-000000?style=flat&logo=express&logoColor=white)  ![Mongoose](https://img.shields.io/badge/Mongoose-800?style=flat) ![MongoDB](https://img.shields.io/badge/MongoDB-4EA94B?style=flat&logo=mongodb&logoColor=white) ![Chart.js](https://img.shields.io/badge/Chart.js-FF6384?style=flat&logo=chart.js&logoColor=white)
+</div>
+
+## App Preview (screenshots)
+##### Landing page
+![](./client/src/icons/landingpage.jpg)
+##### Current Tarrif Prices page
+![](./client/src/icons/currenttarrif.jpg)
+##### Consumption page
+![](./client/src/icons/consumption.jpg)
+
   ## Contributing
 
-  If you would like to contribute to the OctoCare-Agile-Electricity project, please follow these guidelines:
+  If you would like to contribute to the OctoCare Energy project, please follow these guidelines:
 
   1. Fork the repository on GitHub.
   2. Create a new branch with a descriptive name.

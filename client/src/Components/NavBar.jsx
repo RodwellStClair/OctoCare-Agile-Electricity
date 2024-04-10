@@ -12,7 +12,7 @@ function NavBar() {
             target="_blank"
             rel="noopener noreferrer"
           >
-            <h1><strong>Octopus</strong>Energy</h1>
+            <h1><strong>OctoCare</strong>Energy</h1>
           </a>
         </header>
       </div>
